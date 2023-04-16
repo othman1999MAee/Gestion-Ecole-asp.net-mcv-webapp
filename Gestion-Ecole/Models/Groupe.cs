@@ -10,7 +10,7 @@ namespace Gestion_Ecole.Models
         public List<Student> Students { get; set; }
 
         //teachers
-        public List<Teacher_Group> Groupe_teachers { get; set; }
+        public List<Teacher_Group> Groupes_teachers { get; set; }
 
     }
 }

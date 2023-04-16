@@ -3,6 +3,7 @@ using Gestion_Ecole.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gestion_Ecole.Migrations
 {
     [DbContext(typeof(Gestion_EcoleContext))]
-    partial class Gestion_EcoleContextModelSnapshot : ModelSnapshot
+    [Migration("20230416121831_m2")]
+    partial class m2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,30 +23,6 @@ namespace Gestion_Ecole.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Gestion_Ecole.Models.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("roles")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("accounts");
-                });
 
             modelBuilder.Entity("Gestion_Ecole.Models.Administrator", b =>
                 {
@@ -60,6 +39,9 @@ namespace Gestion_Ecole.Migrations
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("roles")
+                        .HasColumnType("int");
 
                     b.HasKey("idAdministrator");
 
@@ -81,6 +63,9 @@ namespace Gestion_Ecole.Migrations
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("roles")
+                        .HasColumnType("int");
 
                     b.HasKey("idDirector");
 
@@ -127,7 +112,7 @@ namespace Gestion_Ecole.Migrations
 
                     b.HasIndex("idSubject");
 
-                    b.ToTable("marks");
+                    b.ToTable("sarks");
                 });
 
             modelBuilder.Entity("Gestion_Ecole.Models.Student", b =>
@@ -151,6 +136,9 @@ namespace Gestion_Ecole.Migrations
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("roles")
+                        .HasColumnType("int");
 
                     b.HasKey("idStudent");
 
@@ -193,6 +181,9 @@ namespace Gestion_Ecole.Migrations
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("roles")
+                        .HasColumnType("int");
 
                     b.HasKey("idTeacher");
 

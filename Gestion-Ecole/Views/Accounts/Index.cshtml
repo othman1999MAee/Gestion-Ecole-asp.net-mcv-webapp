@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Gestion_Ecole.Models.Administrator>
+﻿@model IEnumerable<Gestion_Ecole.Models.Account>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.firstName)
+                @Html.DisplayNameFor(model => model.Username)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lastName)
+                @Html.DisplayNameFor(model => model.Password)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.roles)
@@ -28,18 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.firstName)
+                @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lastName)
+                @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.roles)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.idAdministrator">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.idAdministrator">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.idAdministrator">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

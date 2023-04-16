@@ -10,87 +10,87 @@ using Gestion_Ecole.Models;
 
 namespace Gestion_Ecole.Controllers
 {
-    public class AdministratorsController : Controller
+    public class SubjectsController : Controller
     {
         private readonly Gestion_EcoleContext _context;
 
-        public AdministratorsController(Gestion_EcoleContext context)
+        public SubjectsController(Gestion_EcoleContext context)
         {
             _context = context;
         }
 
-        // GET: Administrators
+        // GET: Subjects
         public async Task<IActionResult> Index()
         {
-              return _context.Administrators != null ? 
-                          View(await _context.Administrators.ToListAsync()) :
-                          Problem("Entity set 'Gestion_EcoleContext.Administrator'  is null.");
+              return _context.subjects != null ? 
+                          View(await _context.subjects.ToListAsync()) :
+                          Problem("Entity set 'Gestion_EcoleContext.subjects'  is null.");
         }
 
-        // GET: Administrators/Details/5
+        // GET: Subjects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Administrators == null)
+            if (id == null || _context.subjects == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Administrators
-                .FirstOrDefaultAsync(m => m.idAdministrator == id);
-            if (administrator == null)
+            var subject = await _context.subjects
+                .FirstOrDefaultAsync(m => m.idSubject == id);
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            return View(administrator);
+            return View(subject);
         }
 
-        // GET: Administrators/Create
+        // GET: Subjects/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Administrators/Create
+        // POST: Subjects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idAdministrator,firstName,lastName,roles")] Administrator administrator)
+        public async Task<IActionResult> Create([Bind("idSubject,subjectName")] Subject subject)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(administrator);
+                _context.Add(subject);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(administrator);
+            return View(subject);
         }
 
-        // GET: Administrators/Edit/5
+        // GET: Subjects/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Administrators == null)
+            if (id == null || _context.subjects == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Administrators.FindAsync(id);
-            if (administrator == null)
+            var subject = await _context.subjects.FindAsync(id);
+            if (subject == null)
             {
                 return NotFound();
             }
-            return View(administrator);
+            return View(subject);
         }
 
-        // POST: Administrators/Edit/5
+        // POST: Subjects/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idAdministrator,firstName,lastName,roles")] Administrator administrator)
+        public async Task<IActionResult> Edit(int id, [Bind("idSubject,subjectName")] Subject subject)
         {
-            if (id != administrator.idAdministrator)
+            if (id != subject.idSubject)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace Gestion_Ecole.Controllers
             {
                 try
                 {
-                    _context.Update(administrator);
+                    _context.Update(subject);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdministratorExists(administrator.idAdministrator))
+                    if (!SubjectExists(subject.idSubject))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace Gestion_Ecole.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(administrator);
+            return View(subject);
         }
 
-        // GET: Administrators/Delete/5
+        // GET: Subjects/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Administrators == null)
+            if (id == null || _context.subjects == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Administrators
-                .FirstOrDefaultAsync(m => m.idAdministrator == id);
-            if (administrator == null)
+            var subject = await _context.subjects
+                .FirstOrDefaultAsync(m => m.idSubject == id);
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            return View(administrator);
+            return View(subject);
         }
 
-        // POST: Administrators/Delete/5
+        // POST: Subjects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Administrators == null)
+            if (_context.subjects == null)
             {
-                return Problem("Entity set 'Gestion_EcoleContext.Administrator'  is null.");
+                return Problem("Entity set 'Gestion_EcoleContext.subjects'  is null.");
             }
-            var administrator = await _context.Administrators.FindAsync(id);
-            if (administrator != null)
+            var subject = await _context.subjects.FindAsync(id);
+            if (subject != null)
             {
-                _context.Administrators.Remove(administrator);
+                _context.subjects.Remove(subject);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AdministratorExists(int id)
+        private bool SubjectExists(int id)
         {
-          return (_context.Administrators?.Any(e => e.idAdministrator == id)).GetValueOrDefault();
+          return (_context.subjects?.Any(e => e.idSubject == id)).GetValueOrDefault();
         }
     }
 }

@@ -10,14 +10,13 @@ namespace Gestion_Ecole.Models
         public int idTeacher { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public Roles roles { get; set; }
-
+ 
         //subject
         public int IdSubject { get; set; }
         [ForeignKey("IdSubject")]
         public Subject Subject { get; set; }
 
         //groupes
-        public List<Teacher_Group> teacher_Groups { get; set;}
+        public List<Teacher_Group> Groupes_teachers { get; set;}
     }
 }

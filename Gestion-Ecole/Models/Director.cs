@@ -9,6 +9,5 @@ namespace Gestion_Ecole.Models
         public int idDirector { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public Roles roles { get; set; }
-    }
+     }
 }

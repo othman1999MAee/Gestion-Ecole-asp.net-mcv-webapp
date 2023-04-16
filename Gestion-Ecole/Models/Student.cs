@@ -9,8 +9,7 @@ namespace Gestion_Ecole.Models
         public int idStudent { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public data.Roles roles { get; set; }
-        public bool isAccepted { get; set; }
+         public bool isAccepted { get; set; }
 
         // groupe
         public int idGroupe { get; set; }
