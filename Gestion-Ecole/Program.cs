@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Gestion_Ecole.Data;
 namespace Gestion_Ecole
 {
     public class Program
@@ -5,6 +8,8 @@ namespace Gestion_Ecole
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<Gestion_EcoleContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Gestion_EcoleContext") ?? throw new InvalidOperationException("Connection string 'Gestion_EcoleContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
